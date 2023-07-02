@@ -82,6 +82,31 @@ func Httpme() *Request {
 	return req
 }
 
+// on Android must set dns before init
+func SetDns(dnsWithPort string) {
+	if dnsWithPort == "" {
+		dnsWithPort = "223.6.6.6:53"
+	}
+	meDialer := &net.Dialer{
+		Resolver: &net.Resolver{
+			PreferGo: true,
+			Dial: func(ctx context.Context, network, address string) (net.Conn, error) {
+				d := net.Dialer{
+					Timeout: 10 * time.Second,
+				}
+				return d.DialContext(ctx, "udp", dnsWithPort)
+			},
+		},
+	}
+
+	meDialContext := func(ctx context.Context, network, addr string) (net.Conn, error) {
+		return meDialer.DialContext(ctx, network, addr)
+	}
+
+	http.DefaultTransport.(*http.Transport).DialContext = meDialContext
+	req.Client := &http.Client{}
+}
+
 // Get ,req.Get
 
 func Get(origurl string, args ...interface{}) (resp *Response, err error) {
