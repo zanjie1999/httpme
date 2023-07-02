@@ -17,12 +17,14 @@ package httpme
 import (
 	"bytes"
 	"compress/gzip"
+	"context"
 	"crypto/tls"
 	"encoding/json"
 	"fmt"
 	"io"
 	"io/ioutil"
 	"mime/multipart"
+	"net"
 	"net/http"
 	"net/http/cookiejar"
 	"net/http/httputil"
@@ -105,7 +107,6 @@ func SetDns(dnsWithPort string) {
 	}
 
 	http.DefaultTransport.(*http.Transport).DialContext = meDialContext
-	req.Client := &http.Client{}
 }
 
 // Get ,req.Get

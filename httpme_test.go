@@ -2,10 +2,11 @@ package httpme
 
 import (
 	"fmt"
-	"github.com/davecgh/go-spew/spew"
 	"net/http"
 	"os"
 	"testing"
+
+	"github.com/davecgh/go-spew/spew"
 )
 
 func TestGet(t *testing.T) {
