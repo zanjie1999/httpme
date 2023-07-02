@@ -16,7 +16,8 @@ A next generation HTTP client for Golang. Like Python httpx/requests.
 go get -u github.com/zanjie1999/httpme
 ```
 
-# Get
+# Use 使用 
+## Get
 
 ``` go
 package main
@@ -133,6 +134,33 @@ func main (){
   "url": "https://www.httpbin.org/post"
 }
 
+```
+
+## On Android
+Android必须设置一个dns才能正常解析域名，只需要在生命周期开始前设置一次
+```
+package main
+
+import (
+	"fmt"
+
+	"github.com/zanjie1999/httpme"
+)
+
+func main (){
+        httpme.SetDns("223.6.6.6:53")
+        resp,err := httpme.Get("http://google.cn")
+        if err != nil{
+          return
+        }
+        // raw Body
+        fmt.println(resp.Content())
+        // string
+        fmt.println(resp.Text())
+        // save to file
+        resp.SaveFile("file.html")
+}
+```
 ```
 
 # Feature Support

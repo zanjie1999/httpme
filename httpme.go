@@ -87,6 +87,7 @@ func SetDns(dnsWithPort string) {
 	if dnsWithPort == "" {
 		dnsWithPort = "223.6.6.6:53"
 	}
+
 	meDialer := &net.Dialer{
 		Resolver: &net.Resolver{
 			PreferGo: true,
