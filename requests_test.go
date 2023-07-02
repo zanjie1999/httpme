@@ -14,16 +14,16 @@ func TestGet(t *testing.T) {
 	req := Httpme()
 
 	req.Header.Set("accept-encoding", "gzip, deflate, br")
-	req.Get("http://www.zhanluejia.net.cn", Header{"Referer": "http://www.jeapedu.com"}, Params{"c": "d", "e": "f"}, Params{"c": "a"})
+	req.Get("http://google.cn", Header{"Referer": "http://www.jeapedu.com"}, Params{"c": "d", "e": "f"}, Params{"c": "a"})
 
 	// example 2
 	println("Get example2")
 	h := Header{
-		"Referer":         "http://www.zhanluejia.net.cn",
+		"Referer":         "http://google.cn",
 		"Accept-Language": "zh-CN,zh;q=0.9,en;q=0.8",
 	}
 
-	Get("http://www.zhanluejia.net.cn", h, Header{"accept-encoding": "gzip, deflate, br"})
+	Get("http://google.cn", h, Header{"accept-encoding": "gzip, deflate, br"})
 
 	// example 3
 	println("Get example3")

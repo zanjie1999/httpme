@@ -21,15 +21,24 @@ go get -u github.com/zanjie1999/httpme
 ``` go
 package main
 
-import "github.com/zanjie1999/httpme"
+import (
+	"fmt"
+
+	"github.com/zanjie1999/httpme"
+)
 
 func main (){
 
-        resp,err := httpme.Get("http://www.zhanluejia.net.cn")
+        resp,err := httpme.Get("http://google.cn")
         if err != nil{
           return
         }
-        println(resp.Text())
+        // raw Body
+        fmt.println(resp.Content())
+        // string
+        fmt.println(resp.Text())
+        // save to file
+        resp.SaveFile("file.html")
 }
 ```
 
@@ -38,8 +47,11 @@ func main (){
 ``` go
 package main
 
-import "github.com/zanjie1999/httpme"
+import (
+	"fmt"
 
+	"github.com/zanjie1999/httpme"
+)
 
 func main (){
 
@@ -47,7 +59,10 @@ func main (){
           "name":"httpme_post_test",
         }
         resp,_ := httpme.Post("https://www.httpbin.org/post",data)
-        println(resp.Text())
+        // raw Body
+        fmt.println(resp.Content())
+        // string
+        fmt.println(resp.Text())
 }
 
 ```
@@ -140,7 +155,7 @@ func main (){
 ``` go
 req := httpme.Httpme()
 
-resp,err := req.Get("http://www.zhanluejia.net.cn",httpme.Header{"Referer":"http://www.jeapedu.com"})
+resp,err := req.Get("http://google.cn",httpme.Header{"Referer":"http://www.jeapedu.com"})
 if (err == nil){
   println(resp.Text())
 }
@@ -151,7 +166,7 @@ if (err == nil){
 ``` go
 req := httpme.Httpme()
 req.Header.Set("accept-encoding", "gzip, deflate, br")
-resp,_ := req.Get("http://www.zhanluejia.net.cn",httpme.Header{"Referer":"http://www.jeapedu.com"})
+resp,_ := req.Get("http://google.cn",httpme.Header{"Referer":"http://www.jeapedu.com"})
 println(resp.Text())
 
 ```
@@ -163,7 +178,7 @@ h := httpme.Header{
   "Referer":         "http://www.jeapedu.com",
   "Accept-Language": "zh-CN,zh;q=0.9,en;q=0.8",
 }
-resp,_ := req.Get("http://wwww.zhanluejia.net.cn",h)
+resp,_ := req.Get("http://wgoogle.cn",h)
 
 h2 := httpme.Header{
   ...
@@ -171,7 +186,7 @@ h2 := httpme.Header{
 }
 h3,h4 ....
 // two or more headers ...
-resp,_ = req.Get("http://www.zhanluejia.net.cn",h,h2,h3,h4)
+resp,_ = req.Get("http://google.cn",h,h2,h3,h4)
 ```
 
 
