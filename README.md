@@ -2,7 +2,7 @@
 
 A next generation HTTP client for Golang. Like Python httpx/requests.
 
-~~ 次时代Golang HTTP客户端 ~~  
+~~次时代Golang HTTP客户端~~  
 
 因为Go上没有像Python中`httpx`或是`requests`那样完美好用的HTTP客户端，并且目前现有的多个名为`requests`都有一些跨平台等的兼容性问题不好处理，并且已经多年未维护（可能已经停止维护），迫不得已来造轮子（因为我也要用的），实现类似Python库`httpx`简单易用的特性
 
